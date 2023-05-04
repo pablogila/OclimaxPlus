@@ -22,6 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import os
 import subprocess
 import shutil
+import time
 
 
 
@@ -42,6 +43,9 @@ def jobs(job_file):
                 continue
             if len(line) == 2:
                 is_file_empty = False
+                print("")
+                print("\n Starting new job: " + line[0] + ", " + line[1])
+                print("")
                 main(line[0], line[1])
             else:
                 print("")
@@ -84,12 +88,15 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
 
     # Get the folder names
     working_path = os.getcwd()
+    data = 'data'
+    out = 'out'
     output_directory = 'OUT_oclimax_' + data_directory
     temp_directory = 'TEMP_oclimax_' + data_directory
-    input_folder = os.path.join(working_path, data_directory)
-    output_folder = os.path.join(working_path, output_directory)
-    temp_folder = os.path.join(working_path, temp_directory)
+    input_folder = os.path.join(working_path, data, data_directory)
+    output_folder = os.path.join(working_path, out, output_directory)
+    temp_folder = os.path.join(working_path, out, temp_directory)
 
+    time_start_main = time.time()
 
     #############################################################
     #  Rename and copy the *.phonon files to the current folder
@@ -159,7 +166,9 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
             output_path = os.path.join(output_folder, file)
             shutil.move(file_old, output_path)
 
-    print("\nDone!\n")
+    print("")
+    print(" Job finished in", round(time.time() - time_start_main, 1), "seconds")
+    print("")
 
 
 
@@ -168,10 +177,19 @@ if (not os.path.isfile('oclimax.bat')) or (not os.path.isfile('oclimax_convert.e
         print("\n ERROR:  'oclimax.win' was found, but you must rename it as 'oclimax.bat'\n")
     else:
         print("\n ERROR:  OCLIMAX files not found. Required files are:")
-        print(" oclimax.bat, oclimax_convert.exe, oclimax_run.exe, oclimax_plot.exe")
+        print(" oclimax.bat (renamed from oclimax.win), oclimax_convert.exe, oclimax_run.exe, oclimax_plot.exe")
         print(" Download from: https://sites.google.com/site/ornliceman/download\n")
     exit()
 
 
 
+time_start = time.time()
+
+
 jobs(jobs_file)
+
+
+print("")
+print(" All jobs finished in", round(time.time() - time_start, 1), "seconds\n")
+print("")
+
