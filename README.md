@@ -16,7 +16,7 @@ On GitHub, clic on 'Code', 'Download ZIP', and extract.
 * Using **git**  
 `git clone https://github.com/pablogila/OclimaxPlus.git`  
 
-Once downloaded, open the **OclimaxPlus** folder and copy inside the [required OCLIMAX scripts](##Requirements). Then create a new folder called **data**, where the input folders should be placed. After execution, the program will extract the outputs in an **out** folder, and the folder structure should look as follows:  
+Once downloaded, open the **OclimaxPlus** folder and copy inside the required OCLIMAX scripts, mentioned in the previous section. Then create a new folder called **data**, where the input folders should be placed. After execution, the program will extract the outputs in an **out** folder, and the folder structure should look as follows:  
 
 ```.
 CrystalReader
