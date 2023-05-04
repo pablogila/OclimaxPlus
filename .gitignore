@@ -173,6 +173,7 @@ oclimax.bat
 *.oclimax
 *.params
 *.zip
+*.txt
 
 # Data folders
 /*data*/
@@ -181,3 +182,5 @@ oclimax.bat
 /*TEST*/
 /*out*/
 /*OUT*/
+/*temp*/
+/*TEMP*/
