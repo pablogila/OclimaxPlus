@@ -1,5 +1,7 @@
 # OclimaxPlus
-OclimaxPlus is a Python program to automatize batch calculations of neutron scattering _S(Q,E)_ simulations via the _OCLIMAX_ software.  
+OclimaxPlus is a Python program to automatize batch calculations of neutron scattering _S(Q,E)_ simulations of *.phonon files via the _OCLIMAX_ software, performing the following consecutive console commands for each phonon file:  
+`oclimax_convert.exe -c filename.phonon -o filename`  
+`oclimax_run.exe filename.oclimax filename.params`  
 
 
 ## Requirements
@@ -16,7 +18,7 @@ On GitHub, clic on 'Code', 'Download ZIP', and extract.
 * Using **git**  
 `git clone https://github.com/pablogila/OclimaxPlus.git`  
 
-Once downloaded, open the **OclimaxPlus** folder and copy inside the required OCLIMAX scripts, mentioned in the previous section. Then create a new folder called **data**, where the input folders should be placed. After execution, the program will extract the outputs in an **out** folder, and the folder structure should look as follows:  
+Once downloaded, open the **OclimaxPlus** folder and copy inside the required OCLIMAX scripts, mentioned in the previous section. Then create a new folder called **data**, where the input folder(s) should be placed; inside each of your input folder(s), there should be several nested subfolders containing your phonon files. After execution, the program will extract the outputs in an **out** folder, following the naming of the subfolders. The folder structure should look as follows:  
 
 ```.
 CrystalReader
@@ -38,7 +40,9 @@ CrystalReader
 │   
 └── out
     ├── OUT_oclimax_data_directory_1
-    │   └── *.csv
+    │   ├── 000-000-000-000.csv
+    │   ├── 270-000-000-000.csv
+    │   └── ...
     ├── TEMP_oclimax_data_directory_1
     │   └── ... Temporary files ...
     ├── OUT_oclimax_data_directory_2
