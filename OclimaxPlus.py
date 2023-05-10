@@ -26,6 +26,11 @@ import time
 
 
 
+def version():
+    return "vOP.2023.05.10.1300"
+
+
+
 jobs_file = 'OclimaxPlus_JOBS.txt'
 
 
@@ -71,6 +76,7 @@ def jobs(job_file):
             f.write("#\n")
             f.write("# Write here all the OclimaxPlus jobs that you want to execute, following this format:\n")
             f.write("# data_directory, phonon_files\n")
+            f.write("# Note that the data_directory should be inside a folder called 'data'\n")
             f.write("#\n")
             f.write("# Example:\n")
             f.write("# data_pbe-d3, cc-2_PhonDOS.phonon\n")
