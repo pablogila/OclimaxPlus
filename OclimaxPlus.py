@@ -23,21 +23,44 @@ import os
 import subprocess
 import shutil
 import time
+import pandas as pd
 
 
 
 def version():
-    return "vOP.2023.05.10.1300"
+    return "vOP.2023.05.11.1630"
 
 
 
-jobs_file = 'OclimaxPlus_JOBS.txt'
+def errorlog(error_log, errors):
+    if len(errors) > 0:
+        errors.insert(0,'Missing files in the folders:')
+        log = pd.DataFrame(errors)
+        log.to_csv(error_log, header=False, index=False)
+        print(" ------------------------------------------------------------")
+        print(" ERRORS: Some files are missing::")
+        for k in errors:
+            print(" "+str(k))
+        print(" Missing files were registered in ", error_log)
+        print(" ------------------------------------------------------------\n")
+
+
+
+# Check if a file exists in the current directory
+def check_file_in_current_directory(filename):
+    current_directory = os.getcwd()  # Get the current working directory
+    file_path = os.path.join(current_directory, filename)  # Create the file path
+
+    if os.path.isfile(file_path):  # Check if the file exists
+        return True
+    else:
+        return False
 
 
 
 # This function will read the input file and execute the batch jobs
 def jobs(job_file):
-    try:
+    if check_file_in_current_directory(job_file):
         is_file_empty = True
         with open(job_file, 'r') as f:
             lines = f.readlines()
@@ -65,7 +88,7 @@ def jobs(job_file):
             print(" but it is empty. Please fill it and try again.")
             print("")
             exit()
-    except FileNotFoundError:
+    else:
         with open(job_file, 'w') as f:
             f.write("# ----------------------------------------------------------------------------------------------\n")
             f.write("# OclimaxPlus batch job file\n")
@@ -101,6 +124,8 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
     input_folder = os.path.join(working_path, data, data_directory)
     output_folder = os.path.join(working_path, out, output_directory)
     temp_folder = os.path.join(working_path, out, temp_directory)
+    errors = []
+    error_file = 'ERRORS_' + data_directory + '.csv'
 
     time_start_main = time.time()
 
@@ -120,8 +145,13 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
             output_file_name = folder_name + '.phonon'
             output_file_path = os.path.join(working_path, output_file_name)
 
-            # Copy the file to the output folder with the new name
-            shutil.copy(file_path, output_file_path)
+            try:
+                # Copy the file to the output folder with the new name
+                shutil.copy(file_path, output_file_path)
+            except FileNotFoundError:
+                errors.append(folder_name)
+                continue
+    errorlog(error_file, errors)
 
     #############################################################
     #  Execute the OCLIMAX commands for all *.phonon files
@@ -191,6 +221,7 @@ if (not os.path.isfile('oclimax.bat')) or (not os.path.isfile('oclimax_convert.e
 
 time_start = time.time()
 
+jobs_file = 'OclimaxPlus_JOBS.txt'
 
 jobs(jobs_file)
 

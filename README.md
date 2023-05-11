@@ -6,7 +6,7 @@ OclimaxPlus is a Python program to automatize batch calculations of neutron scat
 
 ## Requirements
 
-OclimaxPlus runs in [Python 3.X](https://www.python.org/downloads/), and has to be executed with the [OCLIMAX software](https://sites.google.com/site/ornliceman/download) installed in the same folder; in particular, the following files are required:  
+OclimaxPlus runs in [Python 3.X](https://www.python.org/downloads/) with **Pandas** installed, and has to be executed with the [OCLIMAX software](https://sites.google.com/site/ornliceman/download) installed in the same folder; in particular, the following files are required:  
 **oclimax_convert.exe**, **oclimax_run.exe**, **oclimax.bat** (renamed from oclimax.win), **oclimax_plot.exe**.  
 
 
