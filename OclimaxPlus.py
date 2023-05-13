@@ -47,7 +47,7 @@ def errorlog(error_log, errors):
 
 
 # Check if a file exists in the current directory
-def check_file_in_current_directory(filename):
+def is_file_in_current_directory(filename):
     current_directory = os.getcwd()  # Get the current working directory
     file_path = os.path.join(current_directory, filename)  # Create the file path
 
@@ -60,7 +60,7 @@ def check_file_in_current_directory(filename):
 
 # This function will read the input file and execute the batch jobs
 def jobs(job_file):
-    if check_file_in_current_directory(job_file):
+    if is_file_in_current_directory(job_file):
         is_file_empty = True
         with open(job_file, 'r') as f:
             lines = f.readlines()
@@ -125,7 +125,8 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
     output_folder = os.path.join(working_path, out, output_directory)
     temp_folder = os.path.join(working_path, out, temp_directory)
     errors = []
-    error_file = 'ERRORS_' + data_directory + '.csv'
+    error_log = 'oclimax_ERRORS_' + data_directory + '.txt'
+    error_file = os.path.join(working_path, out, error_log)
 
     time_start_main = time.time()
 
@@ -151,6 +152,7 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
             except FileNotFoundError:
                 errors.append(folder_name)
                 continue
+    
     errorlog(error_file, errors)
 
     #############################################################
