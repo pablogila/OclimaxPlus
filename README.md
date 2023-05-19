@@ -61,6 +61,8 @@ The first time running the program it will create an empty batch job file, calle
 An example of a batch job for a folder called **pbe-d3**, with a **cc-2_PhonDOS.phonon** file inside each of the subfolders, would be:  
 `pbe-d3, cc-2_PhonDOS.phonon`  
 
+Notice that before execution, if any *.csv, *.phonon, *.params or *.oclimax file is found in the working directory, it will be moved to a 'UNFINISHED_FILES' folder.  
+
 
 ## Suggestions and Citation
 
