@@ -73,5 +73,6 @@ If you find these scripts useful, a citation would be awesome :D
 
 ## References
 
-* [OCLIMAX download page and user manual](https://sites.google.com/site/ornliceman/download)
+* [Simulation of INS Spectra Using OCLIMAX](https://doi.org/10.1021/acs.jctc.8b01250)
+* [OCLIMAX download webpage and user manual](https://sites.google.com/site/ornliceman/download)
 * [CrystalReader on GitHub](https://github.com/pablogila/CrystalReader)
