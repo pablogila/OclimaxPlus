@@ -23,6 +23,7 @@ import os
 import subprocess
 import shutil
 import time
+import pandas as pd
 
 
 
@@ -114,12 +115,15 @@ def error_folder_missing(folder):
     print("")
 
 
-def error_files_missing(files):
+def error_files_missing(error_log, files):
+    log = pd.DataFrame(files)
+    log.to_csv(error_log, header=False, index=False)
     print("")
     print(" ------------------------------------------------------------")
-    print(" WARNING:  missing file/s:")
+    print(" WARNING:  missing *.phonon file/s in the following folders:")
     for file in files:
-        print(" " + file)
+        print(" " + str(file[0]))
+    print(" Error log exported to '" + error_log + "'")
     print(" ------------------------------------------------------------")
     print("")
 
@@ -170,7 +174,7 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
     output_folder = os.path.join(working_path, out, output_directory)
     temp_folder = os.path.join(working_path, out, temp_directory)
     error_log = 'oclimax_ERRORS_' + data_directory + '.txt'
-    error_file = os.path.join(working_path, out, error_log)
+    error_file = os.path.join(out, error_log)
 
     unfinished_folder = os.path.join(working_path, unfinished_directory)
 
@@ -213,15 +217,15 @@ def main(data_directory='data_pbe-d3', phonon_files='cc-2_PhonDOS.phonon'):
             output_file_path = os.path.join(working_path, output_file_name)
 
             if not os.path.isfile(file_path):
-                error_file = os.path.join(folder_name, phonon_files)
-                files_missing.append(error_file)
+                files_missing.append([folder_name, ' missing phonon file'])
                 continue
 
             # Copy the file to the output folder with the new name
             shutil.copy(file_path, output_file_path)
+
+    # Check for files missing, write the error log if any
     if len(files_missing) > 0:
-        #errorlog(error_file, files_missing)
-        error_files_missing(files_missing)
+        error_files_missing(error_file, files_missing)
 
     #############################################################
     #  Execute the OCLIMAX commands for all *.phonon files
