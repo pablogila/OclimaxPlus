@@ -68,7 +68,7 @@ Notice that before execution, if any *.csv, *.phonon, *.params or *.oclimax file
 
 Please feel free to contact me if you have any questions or suggestions.  
 If you find these scripts useful, a citation would be awesome :D  
-*Gila-Herranz, Pablo. “OclimaxPlus”, 2023. https://github.com/pablogila/OclimaxPlus*  
+*Pablo Gila-Herranz, “OclimaxPlus”, 2023. https://github.com/pablogila/OclimaxPlus*  
 
 
 ## References

@@ -2,7 +2,7 @@
 OclimaxPlus. Simulate neutron scattering with OCLIMAX for lots of files.
 Copyright (C) 2023  Pablo Gila-Herranz
 If you find this code useful, a citation would be awesome :D
-Gila-Herranz, Pablo. “OclimaxPlus”, 2023. https://github.com/pablogila/OclimaxPlus
+Pablo Gila-Herranz, “OclimaxPlus”, 2023. https://github.com/pablogila/OclimaxPlus
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ import pandas as pd
 
 
 def version():
-    return "vOP.2023.05.19.1330"
+    return "vOP.2023.11.16.1100"
 
 
 
@@ -142,7 +142,7 @@ def error_jobfile_missing(job_file):
         f.write("# OclimaxPlus batch job file\n")
         f.write("# Copyright (C) 2023  Pablo Gila-Herranz\n")
         f.write("# If you find this code useful, a citation would be awesome :D\n")
-        f.write("# Gila-Herranz, Pablo. “OclimaxPlus”, 2023. https://github.com/pablogila/OclimaxPlus\n")
+        f.write("# Pablo Gila-Herranz, “OclimaxPlus”, 2023. https://github.com/pablogila/OclimaxPlus\n")
         f.write("# This is free software, and you are welcome to redistribute it under GNU General Public License\n")
         f.write("#\n")
         f.write("# Write here all the OclimaxPlus jobs that you want to execute, following this format:\n")
